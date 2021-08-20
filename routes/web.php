@@ -35,3 +35,14 @@ Route::get('/create', function(){
 
 });
 
+
+Route::get('/read', function(){
+
+    $staff = Staff::findOrFail(1);
+
+    foreach($staff->photo as $photo){
+        echo $photo->path;
+    }
+
+});
+
