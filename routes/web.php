@@ -46,3 +46,14 @@ Route::get('/read', function(){
 
 });
 
+
+Route::get('/update', function(){
+
+    $staff = Staff::findOrFail(1);
+
+    $photo = $staff->photo()->whereId(1)->first();
+    $photo->path = "javascript_example.jpg";
+    $photo->save();
+
+});
+
