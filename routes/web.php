@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Photo;
 use App\Models\Product;
 use App\Models\Staff;
 use Illuminate\Support\Facades\Route;
@@ -65,3 +66,24 @@ Route::get('/delete', function(){
 
 });
 
+
+// Extra technique the assign value
+
+Route::get('/assign', function(){
+
+    $staff = Staff::findOrFail(1);
+    $photo = Photo::findOrFail(3);
+
+    $staff->photo()->whereId(2)->save($photo);
+
+});
+
+
+// Extra technique the un-assign value
+Route::get('/un-assign', function(){
+
+    $product = Product::findOrFail(2);
+
+    $product->photo()->whereId('2')->update(['imageable_id' => 0, 'imageable_type' => '', 'created_at' => null, 'updated_at' => null]);
+
+});
